@@ -1,5 +1,4 @@
 import 'package:chat_app/core/models/ProfileModel.dart';
-import 'package:chat_app/features/chat_detail/domain/repositories/ChatRepository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../../../core/models/ChatRoomModel.dart';

@@ -62,7 +62,17 @@ class _ConversationPageState extends State<ConversationPage> {
       listener: (context, state) {
         if (state is ConversationNavigateToChatDetailActionState) {
           if(state.profile!=null){
-            Navigator.push(context, MaterialPageRoute(builder: (context)=>ChatDetailPage(profile: state.profile)));
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ChatDetailPage(
+                  profile: state.profile,
+                  onPopCallback: () {
+                    conversationBloc.add(ConversationInitialEvent());
+                  },
+                ),
+              ),
+            );
           }
           else
             {

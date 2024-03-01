@@ -26,6 +26,7 @@ class _HomePageState extends State<HomePage> {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           title: Text("Shoopy Chat",style: TextStyle(color: active_color)),
           backgroundColor: primary_color,
           bottom: const TabBar(tabs: [

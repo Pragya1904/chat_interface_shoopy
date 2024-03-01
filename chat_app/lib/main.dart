@@ -1,7 +1,5 @@
 import 'package:chat_app/constants/color_constants.dart';
 import 'package:chat_app/core/models/ProfileModel.dart';
-import 'package:chat_app/features/chat_detail/data/repositories/FirebaseChatDataRepository.dart';
-import 'package:chat_app/features/chat_detail/domain/repositories/ChatRepository.dart';
 import 'package:chat_app/features/chat_detail/presentation/pages/chat_page.dart';
 import 'package:chat_app/features/conversation_list/presentation/pages/conversations_page.dart';
 import 'package:chat_app/features/home/presentation/pages/home_page.dart';
@@ -17,15 +15,9 @@ void main() async{
   await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
   );
-  //setupDependencies();
+
   runApp(const MyApp());
 }
-//
-// void setupDependencies() {
-//   final getIt=GetIt.instance;
-//
-//   getIt.registerSingleton<ChatRepository>(FirebaseChatDataRepository());
-// }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
