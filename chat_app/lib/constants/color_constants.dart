@@ -12,5 +12,5 @@ const active_color=Color(0xffFFFDFE);
 const chat_text_color=Color(0xff707070);
 const user_name_text_color=Color(0xff000000);
 
-
-
+//icon colors
+const messagebar_icon_color=Color(0xff707070);
