@@ -1,7 +1,10 @@
 import 'dart:math';
 
 import 'package:chat_app/constants/color_constants.dart';
+import 'package:chat_app/features/chat_detail/domain/repositories/ChatRepository.dart';
+import 'package:chat_app/features/chat_detail/presentation/manager/chat_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../constants/defaults.dart';
 import '../../../../core/models/ProfileModel.dart';
@@ -18,16 +21,24 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
   TextEditingController _controller=TextEditingController();
   bool isTyping = false; // Added isTyping variable
   @override
+  void initState() {
+    super.initState();
+    ChatBloc chatBloc = BlocProvider.of<ChatBloc>(context);
+    chatBloc.add(ChatInitialEvent(profile: widget.profile));
+  }
+
+  @override
   Widget build(BuildContext context) {
     var width=MediaQuery.of(context).size.width;
     var height=MediaQuery.of(context).size.height;
     return SafeArea(
-      child: Scaffold(
+      child: BlocProvider(
+  create: (context) => ChatBloc(RepositoryProvider.of<ChatRepository>(context)),
+  child: Scaffold(
         appBar: AppBar(
           backgroundColor: primary_color,
           leadingWidth: width*0.08,
           leading: IconButton(onPressed: (){
-
           },icon: Icon(Icons.arrow_back_ios_new,color:secondary_color,size: height*0.025,),),
           titleSpacing: 0,
           iconTheme: const IconThemeData(color: secondary_color), // Setting back button color to secondary_color
@@ -121,6 +132,8 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
           ],
         ),
       ),
+),
     );
   }
 }
+

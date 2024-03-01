@@ -6,12 +6,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:meta/meta.dart';
 
 import '../../../../core/models/ChatRoomModel.dart';
+import '../../domain/repositories/ChatRepository.dart';
 
 part 'chat_event.dart';
 part 'chat_state.dart';
 
 class ChatBloc extends Bloc<ChatEvent, ChatState> {
-  ChatBloc() : super(ChatInitialState()) {
+  final ChatRepository chatRepository;
+  ChatBloc(this.chatRepository) : super(ChatInitialState()) {
    on<ChatInitialEvent>(chatInitialEvent);
    on<SendMessageEvent>(sendMessageEvent);
    on<LoadPreviousChatsEvent>(loadPreviousChatsEvent);
@@ -22,6 +24,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     emit(ChatLoadingState());
     try{
       //do something to fetch the data
+      final chatRoom=await chatRepository.getOrCreateChatRoom(event.profile);
       emit(ChatLoadedSuccessfullyState());
     }
     catch (e){

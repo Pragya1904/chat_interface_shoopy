@@ -16,13 +16,11 @@ class ConversationPage extends StatefulWidget {
 }
 
 class _ConversationPageState extends State<ConversationPage> {
-  //final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  //late Stream<QuerySnapshot> _chatRooms;
+
   final ConversationBloc conversationBloc = ConversationBloc();
   @override
   void initState() {
     conversationBloc.add(ConversationInitialEvent());
-    //  _chatRooms=_firestore.collection('users').snapshots();
     super.initState();
   }
 

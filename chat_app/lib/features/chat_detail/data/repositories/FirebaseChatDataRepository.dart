@@ -1,14 +1,13 @@
 import 'package:chat_app/core/models/ProfileModel.dart';
+import 'package:chat_app/features/chat_detail/domain/repositories/ChatRepository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../../../core/models/ChatRoomModel.dart';
 
-class FirebaseChatDataRepository{
+class FirebaseChatDataRepository {
   final FirebaseFirestore _firestore=FirebaseFirestore.instance;
   Future<ChatRoomModel?> getOrCreateChatRoom(ProfileModel profile)async{
-    ChatRoomModel chatRoom;
-    // QuerySnapshot chatRoomSnapshot=await _firestore.collection('chatrooms').where("participants.${profile.name}",isEqualTo: true).
-    //         where("participants.me",isEqualTo: true).get();
+        ChatRoomModel chatRoom;
         DocumentSnapshot chatRoomSnapshot=await _firestore.collection('chatrooms').doc(profile.uid).get();
         if(chatRoomSnapshot.exists){
           var docData=chatRoomSnapshot.data();
