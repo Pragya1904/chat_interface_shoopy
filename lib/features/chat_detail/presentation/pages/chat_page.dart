@@ -217,6 +217,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                                     chatBloc.add(SendMessageEvent(message: _controller.text.trim(),chatroomId: widget.profile.uid));
                                     setState(() {
                                       _controller.clear();
+                                      isTyping=false;
                                     });
                                   },
                                   icon: Icon(
